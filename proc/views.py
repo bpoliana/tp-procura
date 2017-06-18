@@ -132,12 +132,11 @@ def medicine_update(request,id):
 			return HttpResponseRedirect('/proc/medicine_registered')
 
 	else:
-		form = RegistrationFormMedicine()
-		#form.medicamento_nome = med.medicamento_nome
-		#form.medicamento_data = med.medicamento_data 
-		#form.medicamento_dosagem= med.medicamento_dosagem
-		#form.medicamento_fabricante = med.medicamento_fabricante 
-		#form.medicamento_quantidade = med.medicamento_quantidade  	
+		form = RegistrationFormMedicine(initial={'medicamento_nome':med.medicamento_nome,
+			                                     'medicamento_data':med.medicamento_data,
+			                                     'medicamento_dosagem':med.medicamento_dosagem,
+			                                     'medicamento_fabricante':med.medicamento_fabricante,
+			                                     'medicamento_quantidade':med.medicamento_quantidade})	
 	return render(request, 'proc/medicineupdate.html', {'form':form ,'id': id,'med':med})
 
 
