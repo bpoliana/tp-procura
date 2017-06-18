@@ -1,0 +1,26 @@
+{% extends "proc/base.html" %}
+
+{% block content %}
+    <form method="POST" action="http://127.0.0.1:8000/proc/patientregister/">{% csrf_token %}
+    	<h1>Cadastre-se como paciente</h1>
+        <div>
+	        <table border="0">
+	        	<tbody>
+	        		{% for field in form %}
+	        			<tr>
+	        				<th> {{ field.label_tag }} </th>
+	        				<td> {{ field }}
+	        					<p> {{ field.errors }} </p>
+	        				</td>
+	        			</tr>
+	        		{% endfor %}
+	        	</tbody>
+	        </table>
+	    </div>
+        <buttontype><a href="http://127.0.0.1:8000/proc/login/"> Cadastrar </button>
+        <!--="submit" class="btn btn-primary pull-center"-->
+    </form>
+    <div>
+    	<th><a href="http://127.0.0.1:8000/proc/login/">Voltar</a></th>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PRO-Cura - Onde a sua cura está mais perto de você" />
+    <title>PRO-Cura</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div class="content">
+    <div class="header">
+        <div class="pure-menu pure-menu-open pure-menu-fixed pure-menu-horizontal">
+            <a class="pure-menu-heading" href="">PRO-Cura</a>
+            <ul>
+                <li class="pure-menu-selected"><a href="/proc/home">Início</a></li>
+                <li><a href="/proc/medicineregister">Cadastrar medicamento</a></li>
+                <li><a href="/proc/medicine_registered">Medicamentos cadastrados</a></li>
+            </ul>
+        </div>
+    </div>
+        <ul>
+        <div class="pure-g-r content-ribbon">
+            <div class="pure-u-2-3">
+                <div class="l-box">
+                    <h4 class="content-subhead">Por quê se usar o PRO-Cura?</h4>
+                    <p>
+                        Gerencie seus medicamentos aqui.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        </ul>
+    </div>
+    <div>
+    <div class="content">
+        {% block content %}{% endblock %}
+        <footer id="footer">
+            <div id="footer-content">PRO-Cura - Onde a sua cura está mais perto de você</div>
+        </footer>
+        </div>
+    </div>
+</div>
+<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+</body>
+</html>

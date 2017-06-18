@@ -1,0 +1,77 @@
+<html>
+	<head>
+
+<style>
+	table {
+	    font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	    width: 100%;
+	}
+
+	td, th {
+	    border: 1px solid #dddddd;
+	    text-align: left;
+	    padding: 8px;
+	}
+
+	tr:nth-child(even) {
+	    background-color: #dddddd;
+	}
+</style>
+
+<script type='text/javascript'>
+ function excluirPatient(idParametro) {
+            url = 'http://127.0.0.1:8000/proc/patient_delete/'+ idParametro
+            window.open(url, '_blank');
+        }
+
+ function atualizarPatient(idParametro) {
+            url = 'http://127.0.0.1:8000/proc/patientupdate/'+ idParametro
+            window.open(url, '_blank');
+        }
+</script>
+		<title>PRO-Cura</title>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		
+	</head>
+
+	<div>
+		<h1><a href="">PRO-Cura</a></h1>
+	</div>
+	{% block content %}
+		<div>
+			<h2><a href="">Pacientes Cadastrados</a></h2>  
+		</div>
+       <table>
+       <tr>
+	        <th>Nome</th>
+	        <th>CPF</th>
+	 
+	        <th></th>
+	        <th></th>
+	    </tr>
+		{% for patient in queryset %}
+		<tr>
+
+		   <div class="patient">
+		    <td>{{ patient.patient_name}}</td>
+		    <td>{{ patient.patient_cpf}}</td>
+		    <td>{{ patient.patient_telefone}}</td>
+		    <td>{{ patient.patient_birthday}}</td>
+	
+		    <td>
+                 <button onclick="excluirPatient({{ patient.patient_id}})">EX</button>
+		    	
+		    </td>
+		    <td><button onclick ="atualizarPatient({{ patient.patient_id}})">Modificar</button></td>
+	    	</div>  
+
+	    </tr>			
+		{% endfor %}
+		</table>
+	{%endblock content %}
+
+</html>
+

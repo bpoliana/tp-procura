@@ -1,0 +1,710 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"macro",
+				"macro_health_insurances_card_number"
+			],
+			[
+				"heal",
+				"health_insurance"
+			],
+			[
+				"he",
+				"health_insurance_requests"
+			],
+			[
+				"patient",
+				"patient_health_insurances"
+			],
+			[
+				"to_s",
+				"to_s"
+			],
+			[
+				"conv",
+				"convenio_e_num"
+			],
+			[
+				"patien",
+				"patient_health_insurances"
+			],
+			[
+				"con",
+				"convenio_e_numero_carteira"
+			],
+			[
+				"healt",
+				"health_insurances_macros"
+			],
+			[
+				"in",
+				"inject"
+			],
+			[
+				"health",
+				"health_insurance"
+			],
+			[
+				"heatl",
+				"health_insurance_id"
+			],
+			[
+				"re",
+				"requests"
+			],
+			[
+				"up",
+				"update"
+			],
+			[
+				"has",
+				"has_permission"
+			],
+			[
+				"per",
+				"permission_model_name"
+			],
+			[
+				"Forne",
+				"Fornecedor"
+			],
+			[
+				"C",
+				"Clínica"
+			],
+			[
+				"cli",
+				"clinics"
+			],
+			[
+				"prove",
+				"providers"
+			],
+			[
+				"proi",
+				"providers"
+			],
+			[
+				"clini",
+				"clinic_ids"
+			],
+			[
+				"providers",
+				"providers_url"
+			],
+			[
+				"Providers",
+				"providers"
+			],
+			[
+				"Proi",
+				"Provider"
+			],
+			[
+				"pro",
+				"provider"
+			],
+			[
+				"tele",
+				"telephone_sec"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "blog/apps.py",
+			"settings":
+			{
+				"buffer_size": 83,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 216.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/barbara/Desktop/cefet/Lab_ES/procura/procura.sublime-project",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/providers_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/models/label_template.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/models/ability/worker_ability.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/reports_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/assets/javascripts/reports.js.coffee",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/financial_accounts_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/config/routes.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/models/procedure_request.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/layouts/worker/_navigation.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/providers/index.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/providers/new.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/spec/factories/requests.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/db/migrate/20170323195023_create_table_clinics_providers.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/providers/_form.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/db/migrate/20170323214136_patient.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/requests_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/providers/edit.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/financial_postings/_form.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/db/migrate/20130917215054_create_patients_health_insurances.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/models/clinic.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/models/user.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/providers/show.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/spec/factories/permissions.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/db/migrate/20170313171109_create_clinics_providers.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/models/worker.rb",
+		"/home/barbara/Desktop/cfaz-manager/app/assets/javascripts/health_insurances.js.coffee",
+		"/home/barbara/Desktop/cfaz-manager/app/models/user.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/db/migrate/20140115142009_add_status_to_event.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/spec/factories/clinics.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/clinics_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/patients_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/patients/index.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/patients/_form_inputs.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/patients/_form.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/clinics/show.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/dentists_controller.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/db/migrate/20170308131751_create_providers.rb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/controllers/health_insurances_controller.rb",
+		"/home/barbara/Desktop/cfaz-manager/app/views/dentists/new.html.erb",
+		"/home/barbara/Desktop/cfaz.net/cfaz-manager/app/views/requests/index.pdf.erb",
+		"/home/barbara/Desktop/cfaz-manager/app/controllers/users_controller.rb"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 120.0,
+		"where_history":
+		[
+			"/home/barbara/Desktop/cfaz.net/cfaz-manager",
+			"/home/barbara/Desktop/cfaz-net/cfaz-manager",
+			"/home/barbara/Desktop/cfaz-manager",
+			"/home/barbara/Desktop/cfaz-manager/app",
+			"Cfa,/home/barbara/Desktop/cfaz-manager/app",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"dentist_id",
+			"dentist",
+			"clinics_chain",
+			"clinic",
+			"dentist_",
+			"self.perform",
+			"global_save",
+			"health_insurance",
+			"request",
+			"patient_health_insurance",
+			"10",
+			"self.perform",
+			"global_save",
+			"self.perform",
+			"global_save",
+			")).\n",
+			"\"procedures\"",
+			"procedure\"",
+			"procedures",
+			"procedure_request",
+			"procedable",
+			"requests",
+			"request",
+			"health_insurance_procedures",
+			"health_insurances_procedures",
+			"procedure_requests",
+			"procedures_requests",
+			"health_insurances_procedures",
+			"procedure",
+			"procedable",
+			"requests",
+			"health_insurance_requests",
+			"patient_health_insurances",
+			"health_insurance",
+			"health_insurances",
+			"health_insurance",
+			"health_insurance_requests",
+			"health_insurances_requests",
+			"health_insurances",
+			"insurance",
+			"request",
+			"health_insurance",
+			"request",
+			"? ",
+			"equest.patient.check_patient_health_insurances",
+			"NAVIGATION",
+			"navigation.edit_account",
+			"<!DOC",
+			"ortho",
+			"btn ortho",
+			"cfaz",
+			"cfaz 50",
+			"cfaz",
+			"cfaz5",
+			"cfaz50",
+			"cfaz 50",
+			"wrap",
+			"pricing wrap",
+			"pacote",
+			"van",
+			"Veja",
+			"Veja vantagens",
+			"ortho",
+			"/ortho",
+			"/ortho/pagamentos",
+			"desconto",
+			"health_insurance",
+			"health",
+			"\\convenio_nome",
+			"health_insurance",
+			"health",
+			"clinic_id",
+			"health_insurance_clinic_id",
+			"clinic_id",
+			"id",
+			"health",
+			" permissions_to_hash",
+			"back",
+			"enqueue",
+			"def save",
+			"def create",
+			"after",
+			"Patient",
+			"rg_id",
+			"patient",
+			"cadastre",
+			"current_user",
+			"financial_accounts",
+			"current_user",
+			"financial_accounts_report",
+			"financial_account",
+			"financial_account_report",
+			"financial_account",
+			"providers",
+			"route",
+			"cadastres",
+			"provider",
+			"cadastre",
+			"cadastres",
+			"provider",
+			"\n            <li><%= link_to(t('activerecord.models.provider.other'), providers_path) %></li>",
+			"Patient.model_name",
+			"cadastres",
+			"colaborador",
+			"workers",
+			"cadastres",
+			"workers_path",
+			"Patient.model_name.human",
+			"cadastres",
+			"Cadastros",
+			"Pacientes",
+			"Cadastro",
+			"provider",
+			"Cadastro",
+			"provider",
+			"financial",
+			"provider",
+			"default ac",
+			"default",
+			"default actions",
+			"providers",
+			"private",
+			"reference",
+			"models",
+			"patients",
+			"has_and_belongs_to_many",
+			"has_and_belogs_to",
+			"Phonelib"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "blog/apps.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 83,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "procura.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"app/models/dentist.rb"
+			],
+			[
+				"sche",
+				"db/schema.rb"
+			],
+			[
+				"providers",
+				"app/views/providers/new.html.erb"
+			],
+			[
+				"request.rb",
+				"app/models/request.rb"
+			],
+			[
+				"request",
+				"app/models/request.rb"
+			],
+			[
+				"schema",
+				"db/schema.rb"
+			],
+			[
+				"job",
+				"vendor/assets/javascripts/bootstrap-inputmask.js"
+			],
+			[
+				"pt",
+				"config/locales/pt-BR.yml"
+			],
+			[
+				"patient",
+				"app/models/patient.rb"
+			],
+			[
+				"patiet",
+				"app/models/patient.rb"
+			],
+			[
+				"labe",
+				"app/models/label_template.rb"
+			],
+			[
+				"label",
+				"app/models/label_template.rb"
+			],
+			[
+				"clinic",
+				"app/models/clinic.rb"
+			],
+			[
+				"health",
+				"app/models/health_insurance.rb"
+			],
+			[
+				"provi",
+				"app/models/provider.rb"
+			],
+			[
+				"re",
+				"spec/factories/requests.rb"
+			],
+			[
+				"worker",
+				"app/models/ability/worker_ability.rb"
+			],
+			[
+				"reques",
+				"app/controllers/requests_controller.rb"
+			],
+			[
+				"add_rg",
+				"db/migrate/20170324195542_add_column_rg_id_to_patient.rb"
+			],
+			[
+				"2017",
+				"db/migrate/20170323214136_patient.rb"
+			],
+			[
+				"patien",
+				"app/models/patient.rb"
+			],
+			[
+				"pe",
+				"app/models/permission.rb"
+			],
+			[
+				"per",
+				"spec/factories/permissions.rb"
+			],
+			[
+				"permi",
+				"app/models/permission.rb"
+			],
+			[
+				"provider",
+				"app/models/provider.rb"
+			],
+			[
+				"rout",
+				"config/routes.rb"
+			],
+			[
+				"cfazapi",
+				"config/cfaz_max_api.yml"
+			],
+			[
+				"role",
+				"app/models/role.rb"
+			],
+			[
+				"user",
+				"app/models/user.rb"
+			],
+			[
+				"sho",
+				"app/views/providers/show.html.erb"
+			],
+			[
+				"clini",
+				"app/models/clinic.rb"
+			],
+			[
+				"abili",
+				"app/models/ability/worker_ability.rb"
+			],
+			[
+				"pro",
+				"app/controllers/providers_controller.rb"
+			],
+			[
+				"index",
+				"app/views/providers/index.html.erb"
+			],
+			[
+				"pat",
+				"app/controllers/patients_controller.rb"
+			],
+			[
+				"inde",
+				"app/views/providers/index.html.erb"
+			],
+			[
+				"form",
+				"app/views/providers/_form.html.erb"
+			],
+			[
+				"_for",
+				"app/views/providers/_form.html.erb"
+			],
+			[
+				"new",
+				"app/views/providers/new.html.erb"
+			],
+			[
+				"show",
+				"app/views/providers/show.html.erb"
+			],
+			[
+				"work",
+				"app/models/worker.rb"
+			],
+			[
+				"provider_co",
+				"app/controllers/providers_controller.rb"
+			],
+			[
+				"shoe",
+				"app/views/providers/show.html.erb"
+			],
+			[
+				"providerform",
+				"app/views/providers/_form.html.erb"
+			],
+			[
+				"/migrate",
+				"db/migrate/20140115142009_add_status_to_event.rb"
+			],
+			[
+				"prov",
+				"app/models/provider.rb"
+			],
+			[
+				"s",
+				"db/schema.rb"
+			],
+			[
+				"sc",
+				"db/schema.rb"
+			],
+			[
+				"pati",
+				"app/models/patient.rb"
+			],
+			[
+				"schem",
+				"db/schema.rb"
+			],
+			[
+				"outside",
+				"app/assets/javascripts/outside-submit.js.coffee"
+			],
+			[
+				"pt-br",
+				"config/locales/pt-BR.yml"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/cefet/Lab_ES/procura.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 524.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

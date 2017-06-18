@@ -1,0 +1,31 @@
+{% extends 'proc/base.html' %}
+<html>
+	<head>
+		<title>PRO-Cura</title>
+
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		
+	</head>
+
+	<div>
+		<h1><a href="">PRO-Cura</a></h1>
+	</div>
+	{% block content %}
+		<div>
+			<h2><a href="">Centros de Saúde Cadastrados</a></h2>  
+		</div>
+
+		{% for h in h %}
+		    <div class="health_centers">
+	        	<div class="type">
+	            	{{ h.type }}
+	        	</div>
+
+	        	<h1><a href="">{{ post.title }}</a></h1>
+	        		<p>{{ h.name }}</p>
+	    	</div>
+		{% endfor %}
+	{%endblock content %}
+
+</html>

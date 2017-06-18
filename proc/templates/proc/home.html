@@ -1,0 +1,11 @@
+{% extends "proc/base.html" %}
+
+{% block title %}Bem-vindo ao PRO-Cura!
+Vamos achar o caminho mais próximo do seu medicamento{% endblock %}
+
+{% block content %}
+	<h1><p>Olá {{ user.username }} !!! </h1>
+	<ul>Bem-vindo ao PRO-Cura!</ul>
+	<ul>Vamos encontrar o caminho mais próximo até o seu medicamento!</p></ul>
+    <a href="http://127.0.0.1:8000/proc/logout/">Logout</a>
+{% endblock %}

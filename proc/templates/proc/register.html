@@ -1,0 +1,17 @@
+{% extends "proc/base.html" %}
+
+{% block content %}
+    <form method="POST" action="/proc/register/">
+    	{% csrf_token %}
+    	<h1>Cadastre-se</h1>
+        <div>
+	        <table>
+	        	{{ form.as_table }}
+	        </table>
+	    </div>
+        <button type="submit" class="btn btn-primary pull-center">Cadastrar </button>
+    </form>
+    <div>
+    	<th><a href="http://127.0.0.1:8000/proc/login/">Voltar</a></th>
+    </div>
+{% endblock %}
