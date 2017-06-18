@@ -30,7 +30,7 @@ class RegistrationFormMedicine(forms.Form):
 		#model = Medicine
 		#fields = ['medicamento_id','medicamento_nome','medicamento_data','medicamento_dosagem','medicamento_fabricante','medicamento_quantidade']
 	medicamento_nome = forms.CharField(label='Nome', max_length=45, required=True)
-	medicamento_data = forms.DateField(label = 'Data', required = True)
+	medicamento_data = forms.DateField(label = 'Vencimento', required = True)
 	medicamento_dosagem = forms.CharField(label='Dosagem',max_length=45, required=True)
 	medicamento_fabricante = forms.CharField(label='Fabricante',max_length=45,required=True)
 	medicamento_quantidade = forms.DecimalField(label='Quantidade', max_digits=5,decimal_places=0,required=True)
