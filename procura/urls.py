@@ -13,23 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import  include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 from proc.views import *
 
 urlpatterns = [
-    
-	url(r'^$', RedirectView.as_view(url='home', permanent=True)),
+
+    url(r'^$', RedirectView.as_view(url='/proc', permanent=True)),
 
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
- 	url(r'^proc/', include('proc.urls')),
-    url(r'^accounts/profile/$', auth_views.login, name='login', kwargs={'redirect_authenticated_user': True}),
+    url(r'^proc/', include('proc.urls')),
+    url('^accounts/login/$', auth_views.login, name='login', kwargs={'redirect_authenticated_user': True}),
+    # url(r'^accounts/profile/$', auth_views.login, name='login', kwargs={'redirect_authenticated_user': True}),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-# 	url(r'^proc/logout/$', include('proc.urls')), 	
-# 	url(r'^proc/home', include('proc.urls')),
- 	#url('^accounts/login/$', auth_views.login, name='login', kwargs={'redirect_authenticated_user': True}),
-    #url('accounts/', include('django.contrib.auth.urls')), 	
+    # 	url(r'^proc/logout/$', include('proc.urls')),
+    # 	url(r'^proc/home', include('proc.urls')),
+
+    # url('accounts/', include('django.contrib.auth.urls')),
 ]
+
+
