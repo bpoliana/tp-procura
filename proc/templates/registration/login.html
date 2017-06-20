@@ -1,30 +1,30 @@
-
 {% extends "proc/base.html" %}
 
 {% block title %}Login{% endblock %}
 
 
 {% block content %}
-<div class="pure-g-r content-ribbon">
-    <div class="pure-u-1">
-        <h2>Informe seus dados de cadastro</h2>
-        <form class="pure-form pure-form-aligned" method="post" action="/proc/home/">{%csrf_token%}
-            
-            <fieldset>
-                {{ form.non_field_errors }}
-                <div class="pure-control-group"> 
-                    <label for="username">Usuário:</label>
-                    <input id="username" name="login" type="email" required/>
-                </div>
-                <div class="pure-control-group"> 
-                    <label for="password">Senha:</label>{{ form.password}}
-                </div>
-                <div class="pure-controls"> 
-                    <button type="submit" class="pure-button pure-button-primary">Entrar</button>
-                </div>
-            </fieldset>
+    <div class="pure-g-r content-ribbon">
+        <div class="pure-u-1">
+            <h2>Informe seus dados de cadastro</h2>
+            <form class="pure-form pure-form-aligned" method="post" action="{% url 'login' %}">{% csrf_token %}
+
+                <fieldset>
+                    {{ form.non_field_errors }}
+                    <div class="pure-control-group">
+                        <label for="username">Usuário:</label>
+                        <input id="id_username" name="username" type="email" required/>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="password">Senha:</label>{{ form.password }}
+                    </div>
+                    <div class="pure-controls">
+                        <button type="submit" class="pure-button pure-button-primary" value="login">Entrar</button>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                    </div>
+                </fieldset>
                 <th><a href="/proc/register/">Cadastre-se</a></th>
 
+        </div>
     </div>
-</div>
 {% endblock %}
