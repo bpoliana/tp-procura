@@ -1,0 +1,11 @@
+{% extends "proc/base.html" %}
+
+{% block content %}
+    <h1>Deseja deletar {{ request.user.first_name }} ?</h1>
+    <form action="{% url 'proc:healthcenter_delete' %}" method="post">
+    {% csrf_token %}
+        <input type="submit" value="Sim">
+    </form>
+    <a href="{% url 'proc:healthcenter_registered' %}">Cancelar</a>
+
+{% endblock %}

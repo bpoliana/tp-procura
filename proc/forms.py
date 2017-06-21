@@ -87,3 +87,17 @@ class RegistrationFormGlobal(forms.Form):
     name = forms.CharField(max_length=100, label='Nome')
     email = forms.EmailField(max_length=100, label='Email')
     password = forms.CharField(widget=forms.PasswordInput(), max_length=20, label='Senha')
+
+
+class RegistrationFormHealthCenter(forms.Form):
+    centro_nome = forms.CharField(label='Nome', max_length=60, required=True)
+    centro_tipo = forms.CharField(label='Tipo', max_length=30)
+    centro_endereco = forms.CharField(label='Endereço', max_length=200)
+
+    def clean_centro_nome(self):  # Valida se o nome ja existe
+        nome = self.cleaned_data['centro_nome']
+        exist_nome = HealthCenter.objects.filter(centro_nome=nome)
+
+        if len(exist_nome) > 0:
+            raise ValidationError('Esse nome de Centro de Saude ja esta registrado')
+        return self.cleaned_data['centro_nome']

@@ -1,0 +1,14 @@
+{% extends "proc/base.html" %}
+
+{% block content %}
+    <h1>Suas informaçoes</h1>
+    <ul style="list-style: none">
+        <li><b>Nome do Centro de Saúde:</b> {{ request.user.first_name }}</li>
+        <li><b>Email do Admin:</b> {{ request.user.username }}</li>
+        <li><b>Tipo:</b> {{ cen.centro_tipo }}</li>
+        <li><b>Endereço:</b> {{ cen.centro_endereco }}</li>
+    </ul>
+    <a href="{% url 'proc:healthcenter_update' %}">Editar</a>
+    <a href="{% url 'proc:healthcenter_delete' %}">Deletar</a>
+
+{% endblock %}

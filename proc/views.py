@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response, render, redirect
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.urls import reverse
-from .models import HealthCenter, n_User, Medicine
+from .models import HealthCenterOk, n_User, Medicine
 from .forms import *
 from .tables import *
 from datetime import *
@@ -239,3 +239,100 @@ def patient_update(request):
 
 
     return render(request, 'proc/patientupdate.html', {'form': form, 'id': pat.pk, 'pat': pat})
+
+#Centro de Saude
+
+def healthcenter_register(request, id):
+    form = RegistrationFormHealthCenter()
+    if request.method == 'POST':
+        form = RegistrationFormHealthCenter(request.POST)
+        if form.is_valid():
+            user = n_User.objects.get(pk=id)
+            nome = form.cleaned_data['centro_nome']
+            tipo = form.cleaned_data['centro_tipo']
+            endereco = form.cleaned_data['centro_endereco']
+            HealthCenterOk.objects.create(user=user, healthcenter_nome=nome, healthcenter_tipo=tipo)
+            messages.info(request, 'Centro de Saude criado com sucesso')
+            return redirect('login')
+
+    return render(request, 'proc/patientregister.html', {'form': form, 'id': id})
+
+def show_perfil(request):
+    tipo = n_User.objects.get(dj_user=request.user).utype
+
+    if tipo == 'Cen': # adicionar os links de cada perfil
+        return redirect('proc:healthcenter_registered')
+    else:
+        return redirect('proc:home')
+
+def healthcenter_show(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    cen = HealthCenterOk.objects.get(user=user)
+    return render(request, "proc/healthcenter_show.html", {'cen': cen})
+
+
+def healthcenter_delete(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    cen = HealthCenterOk.objects.get(user=user)
+    if request.method == 'POST':
+        messages.info(request, 'Centro de Saude deletado com sucesso')
+        cen.delete()
+        user.delete()
+        dj_user.delete()
+        return redirect('proc:home')
+
+
+    return render(request,'proc/healthcenter_delete.html', {})
+
+
+@login_required(login_url='/accounts/login')
+def healthcenter_update(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    cen = HealthCenterOk.objects.get(user=user)
+    form = UpdateFormPatient()
+    nome_field = form.fields['nome']
+    email_field = form.fields['email']
+    nome_centro_field = form.fields['cen.centro_nome']
+    tipo_centro_field = form.fields['cen.centro_tipo']
+
+    end_field = form.fields['centro_endereco']
+
+    # Set inital values
+    nome_field.initial = dj_user.first_name
+    email_field.initial = dj_user.username
+    nome_centro_field.initial = cen.centro_nome
+    end_field.initial = cen.centro_endereco
+
+    if request.method == 'POST':
+        form = UpdateFormPatient(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            cen_nome = form.cleaned_data['centro_nome']
+            cen_tipo = form.cleaned_data['centro_tipo']
+            cen_end = form.cleaned_data['centro_endereco']
+            
+            flag_error = False
+            if email != dj_user.username and len(User.objects.filter(username=email)) > 0:
+                flag_error = True
+                form.add_error('email', 'Email ja existe')
+            if cen_nome != cen.centro_nome and len(HealthCenterOk.objects.filter(centro_nome=cen_nome)) > 0:
+                flag_error = True
+                form.add_error('centro_nome', 'Ja existe um Centro com esse nome.')
+
+            if not flag_error:
+                cen.cen_nome = nome
+                cen.centro_tipo = cen_tipo
+                cen.centro_endereco = cen_end
+                cen.save()
+                dj_user.first_name = nome
+                dj_user.username = email
+                dj_user.save()
+                messages.info(request, 'Centro de saude editado com sucesso')
+                return redirect('healthcenter_registered')
+
+
+    return render(request, 'proc/healthcenter_update.html', {'form': form, 'id': cen.pk, 'cen': cen})
