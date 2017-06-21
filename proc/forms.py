@@ -86,4 +86,4 @@ class RegistrationFormGlobal(forms.Form):
     tipoform = forms.ChoiceField(choices=tipo, label='Tipo')
     name = forms.CharField(max_length=100, label='Nome')
     email = forms.EmailField(max_length=100, label='Email')
-    password = forms.CharField(widget=forms.PasswordInput(), max_length=20, label='Senha')
+    password = forms.CharField(widget=forms.PasswordInput(), min_length=6, max_length=20, label='Senha')
