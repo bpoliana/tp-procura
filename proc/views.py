@@ -235,7 +235,7 @@ def patient_update(request):
                 dj_user.username = email
                 dj_user.save()
                 messages.info(request, 'Paciente editado com sucesso')
-                return redirect('patient_registered')
+                return redirect('proc:patient_registered')
 
 
     return render(request, 'proc/patientupdate.html', {'form': form, 'id': pat.pk, 'pat': pat})
