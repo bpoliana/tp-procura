@@ -38,7 +38,7 @@ def register(request):
             if tipoUser == 'Cen':
                 return redirect('login')  # cadastro especifico (nameurl)
             if tipoUser == 'For':
-                return redirect('login')  # cadastro especifico (nameurl)
+                return HttpResponseRedirect('/proc/fornecedorregister/' + str(nUser.pk))
 
     return render(request, 'proc/register.html', {'form': form})
 
@@ -179,7 +179,7 @@ def patient_register(request, id):
 def fornecedor_register(request, id):
     form = RegistrationFormFornecedor()
     if request.method == 'POST':
-        form = RegistrationFormPatient(request.POST)
+        form = RegistrationFormFornecedor(request.POST)
         if form.is_valid():
             user = n_User.objects.get(pk=id)
             cpnj = form.cleaned_data['fornecedor_cnpj']
@@ -187,7 +187,7 @@ def fornecedor_register(request, id):
             messages.info(request, 'Fornecedor criado com sucesso')
             return redirect('login')
 
-    return render(request, 'proc/patientregister.html', {'form': form, 'id': id})
+    return render(request, 'proc/fornecedorregister.html', {'form': form, 'id': id})
 
 
 def show_perfil(request):
@@ -324,7 +324,7 @@ def fornecedor_update(request):
                 dj_user.username = email
                 dj_user.save()
                 messages.info(request, 'Fornecedor editado com sucesso')
-                return redirect('patient_registered')
+                return redirect('fornecedor_registered')
 
 
     return render(request, 'proc/fornecedorupdate.html', {'form': form, 'id': forn.pk, 'forn': forn})

@@ -25,11 +25,11 @@ urlpatterns = [
     url(r'^patient_delete/$', views.patient_delete, name="patient_delete"),
     url(r'^patientupdate/$', views.patient_update, name="patientupdate"),
    
-    url(r'^fornecedorregister/(?P<id>\d+)/$', views.fornacedor_register, name="patientregister"),
-    url(r'^fornecedor_registered/$', views.fornecedor_show, name="patient_registered"),
-    url(r'^fornecedor_delete/$', views.fornecedor_delete, name="patient_delete"),   
-    url(r'^fornecedorupdate/$', views.fornecedor_update, name="patientupdate"),
-    
+    url(r'^fornecedorregister/(?P<id>\d+)/$', views.fornecedor_register, name="fornecedorregister"),
+    url(r'^fornecedor_registered/$', views.fornecedor_show, name="fornecedor_registered"),
+    url(r'^fornecedor_delete/$', views.fornecedor_delete, name="fornecedor_delete"),   
+    url(r'^fornecedorupdate/$', views.fornecedor_update, name="fornecedorupdate"),
+
     url(r'^profile/$', views.show_perfil, name="showperfil"),
 
     # url(r'^registerpat/$',views.registerpat, name= "registerpat")
