@@ -89,6 +89,12 @@ def login_user(request):
 def medicine_manager(request):
     return render_to_response('proc/main_medicine.html', {})
 
+def medicine_search(request):
+    return render_to_response('proc/medicine_search.html', {})
+
+def medicine_results(request,nome):
+    queryset = Medicine.objects.filter(medicamento_nome_icontains = nome)
+    return render_to_response('proc/medicine_results.html', {})
 
 def medicine_register(request):
     print(request.method)
@@ -141,12 +147,11 @@ def medicine_update(request, id):
             return HttpResponseRedirect('/proc/medicine_registered')
 
     else:
-        form = RegistrationFormMedicine()
-        # form.medicamento_nome = med.medicamento_nome
-        # form.medicamento_data = med.medicamento_data
-        # form.medicamento_dosagem= med.medicamento_dosagem
-        # form.medicamento_fabricante = med.medicamento_fabricante
-        # form.medicamento_quantidade = med.medicamento_quantidade
+        form = RegistrationFormMedicine(initial={'medicamento_nome':med.medicamento_nome,
+                                                 'medicamento_data':med.medicamento_data,
+                                                 'medicamento_dosagem':med.medicamento_dosagem,
+                                                 'medicamento_fabricante':med.medicamento_fabricante,
+                                                 'medicamento_quantidade':med.medicamento_quantidade})
     return render(request, 'proc/medicineupdate.html', {'form': form, 'id': id, 'med': med})
 
 
