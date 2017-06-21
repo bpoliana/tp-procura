@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PRO-Cura - Onde a sua cura está mais perto de você" />
+    <meta name="description" content="PRO-Cura - Onde a sua cura está mais perto de você"/>
     <title>PRO-Cura</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 <div class="content">
@@ -18,34 +18,45 @@
                 <li class="pure-menu-selected"><a href="/proc/home">Início</a></li>
                 <li><a href="#">Centros de Saúde</a></li>
                 <li><a href="#">Medicamentos</a></li>
-                <li><a href="/accounts/login">Faça seu Login</a></li>
-                <li><a href="/proc/register">Cadastre-se</a></li>
-                <li><a href="/proc/patientregister">Cadastre-se como paciente</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'proc:showperfil'%}">Perfil</a></li>
+                    <li><a href="{% url 'proc:logout'%}">Logout</a></li>
+                {% else %}
+                    <li><a href="/accounts/login">Faça seu Login</a></li>
+                    <li><a href="/proc/register">Cadastre-se</a></li>
+                {% endif %}
+
             </ul>
         </div>
     </div>
-        <ul>
+    <ul>
         <div class="pure-g-r content-ribbon">
             <div class="pure-u-2-3">
                 <div class="l-box">
+                    <ul style="margin-top: 15px;" class="messagelist">
+                        {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
                     <h4 class="content-subhead">Por quê se usar o PRO-Cura?</h4>
                     <p>
-                        Com o PRO-Cura, você encontra seu medicamento mais rápido, mais perto e mais acessível para você.
+                        Com o PRO-Cura, você encontra seu medicamento mais rápido, mais perto e mais acessível para
+                        você.
                     </p>
                 </div>
             </div>
-            
+
         </div>
-        </ul>
-    </div>
-    <div>
+    </ul>
+</div>
+<div>
     <div class="content">
         {% block content %}{% endblock %}
         <footer id="footer">
             <div id="footer-content">PRO-Cura - Onde a sua cura está mais perto de você</div>
         </footer>
-        </div>
     </div>
+</div>
 </div>
 <script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
 </body>

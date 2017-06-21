@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^sucess/$', views.register_sucessed, name="sucsess"),
     url(r'^home/$', views.home, name="home"),
     url(r'^login/$', views.login_user, name="login"),
-    # url(r'^logout/$', views.register, name="logout"),
+    url(r'^logout/$', views.logout_page, name="logout"),
     url(r'^medicine/$', views.medicine_manager, name="medicine_manager"),
     url(r'^medicineregister/$', views.medicine_register, name="medicineregister"),
     url(r'^medicine_registered/$', views.medicine_show, name="medicine_registered"),
@@ -20,7 +20,9 @@ urlpatterns = [
     # url(r'^medicineregister/$',MedicineCreate.as_view())
     url(r'^patientregister/(?P<id>\d+)/$', views.patient_register, name="patientregister"),
     url(r'^patient_registered/$', views.patient_show, name="patient_registered"),
-    url(r'^patient_delete/(?P<id>\d+)/$', views.patient_delete, name="patient_delete"),
-    url(r'^patientupdate/(?P<id>\d+)/$', views.patient_update, name="patientupdate"),
+    url(r'^patient_delete/$', views.patient_delete, name="patient_delete"),
+    url(r'^patientupdate/$', views.patient_update, name="patientupdate"),
+    url(r'^profile/$', views.show_perfil, name="showperfil"),
+
     # url(r'^registerpat/$',views.registerpat, name= "registerpat")
 ]

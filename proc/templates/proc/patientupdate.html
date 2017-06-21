@@ -1,7 +1,7 @@
 {% extends "proc/base.html" %}
 
 {% block content %}
-    <form method="POST" action="http://127.0.0.1:8000/proc/patientupdate/{{id}}/">{% csrf_token %}
+    <form method="POST" action="/proc/patientupdate/">{% csrf_token %}
     	<h1>Modifique os dados de cadastro de paciente</h1>
         <div>
 	        <table border="0">

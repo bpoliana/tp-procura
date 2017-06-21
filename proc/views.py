@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout, login, authenticate
+from django.contrib import messages
 from django.contrib.auth.forms import *
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render_to_response, render, redirect
@@ -74,16 +75,16 @@ def register_sucessed(request):
 
 def logout_page(request):
     logout(request)
-    return HttpResponseRedirect('/')  # logout redireciona para pagina inicial
+    return redirect('proc:home')  # logout redireciona para pagina inicial
 
 
 @login_required(login_url='/accounts/login')
 def home(request):
-    return render_to_response('proc/index.html', {})
+    return render(request,'proc/index.html', {})
 
 
 def login_user(request):
-    return render_to_response('registration/login.html', {})
+    return render(request, 'registration/login.html', {})
 
 
 def medicine_manager(request):
@@ -151,7 +152,6 @@ def medicine_update(request, id):
 
 
 def patient_register(request, id):
-    print(request.method)
     form = RegistrationFormPatient()
     if request.method == 'POST':
         form = RegistrationFormPatient(request.POST)
@@ -160,38 +160,82 @@ def patient_register(request, id):
             cpf = form.cleaned_data['patient_cpf']
             birthday = form.cleaned_data['patient_birthday']
             Patient.objects.create(user=user, patient_cpf=cpf, patient_birthday=birthday)
+            messages.info(request, 'Paciente criado com sucesso')
             return redirect('login')
 
     return render(request, 'proc/patientregister.html', {'form': form, 'id': id})
 
+def show_perfil(request):
+    tipo = n_User.objects.get(dj_user=request.user).utype
+
+    if tipo == 'Pac': # adicionar os links de cada perfil
+        return redirect('proc:patient_registered')
+    else:
+        return redirect('proc:home')
 
 def patient_show(request):
-    queryset = Patient.objects.get(pk=id)
-    return render(request, "proc/patient_registered.html", {'queryset': queryset})
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    pat = Patient.objects.get(user=user)
+    return render(request, "proc/showpatient.html", {'pat': pat})
 
 
-def patient_delete(request, id):
-    pat = Patient.objects.get(pk=id)
-    pat.delete()
-    return HttpResponseRedirect('/proc/patient_registered')
+def patient_delete(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    pat = Patient.objects.get(user=user)
+    if request.method == 'POST':
+        messages.info(request, 'Paciente deletado com sucesso')
+        pat.delete()
+        user.delete()
+        dj_user.delete()
+        return redirect('proc:home')
 
 
-def patient_update(request, id):
-    pat = Patient.objects.get(pk=id)
+    return render(request,'proc/patientdelete.html', {})
+
+
+@login_required(login_url='/accounts/login')
+def patient_update(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    pat = Patient.objects.get(user=user)
+    form = UpdateFormPatient()
+    nome_field = form.fields['nome']
+    email_field = form.fields['email']
+    cpf_field = form.fields['patient_cpf']
+    birth_field = form.fields['patient_birthday']
+
+    # Set inital values
+    nome_field.initial = dj_user.first_name
+    email_field.initial = dj_user.username
+    cpf_field.initial = pat.patient_cpf
+    birth_field.initial = pat.patient_birthday
 
     if request.method == 'POST':
-        form = RegistrationFormPatient(request.POST)
+        form = UpdateFormPatient(request.POST)
         if form.is_valid():
-            pat.patient_name = form.cleaned_data['patient_name']
-            pat.patient_cpf = form.cleaned_data['patient_cpf']
-            pat.patient_telefone = form.cleaned_data['patient_telefone']
-            pat.patient_brithday = form.cleaned_data['patient_birthday']
-            pat.patient_password = form.cleaned_data['patient_password']
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            cpf = form.cleaned_data['patient_cpf']
+            birth = form.cleaned_data['patient_birthday']
+            flag_error = False
+            if email != dj_user.username and len(User.objects.filter(username=email)) > 0:
+                flag_error = True
+                form.add_error('email', 'Email ja existe')
+            if cpf != pat.patient_cpf and len(Patient.objects.filter(patient_cpf=cpf)) > 0:
+                flag_error = True
+                form.add_error('patient_cpf', 'CPF ja existe')
 
-            pat.save()
-            return HttpResponseRedirect('/proc/patient_registered')
+            if not flag_error:
+                pat.patient_cpf = cpf
+                pat.patient_birthday = birth
+                pat.save()
+                dj_user.first_name = nome
+                dj_user.username = email
+                dj_user.save()
+                messages.info(request, 'Paciente editado com sucesso')
+                return redirect('patient_registered')
 
-    else:
-        form = RegistrationFormPatient()
 
-    return render(request, 'proc/patientupdate.html', {'form': form, 'id': id, 'pat': pat})
+    return render(request, 'proc/patientupdate.html', {'form': form, 'id': pat.pk, 'pat': pat})
