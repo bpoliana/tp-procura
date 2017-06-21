@@ -61,7 +61,9 @@ class RegistrationFormPatient(forms.Form):
 
 class UpdateFormPatient(forms.Form):
     this_year = date.today().year
-    # patient_cpf = forms.CharField(label='CPF', max_length=30, required=True)
+    nome = forms.CharField(label='Nome', max_length=15)
+    email = forms.EmailField(label='Email')
+    patient_cpf = forms.CharField(label='CPF', max_length=30, required=True)
     patient_birthday = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, this_year + 1)),
                                        label='Data de Nascimento')
 
@@ -71,6 +73,7 @@ class UpdateFormPatient(forms.Form):
         if birthday > date.today():
             raise ValidationError('Nao chegamos a essa data ainda')
         return self.cleaned_data['patient_birthday']
+
 
 class RegistrationFormGlobal(forms.Form):
     tipo = (

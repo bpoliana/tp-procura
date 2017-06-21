@@ -1,0 +1,14 @@
+{% extends "proc/base.html" %}
+
+{% block content %}
+    <h1>Suas informaçoes</h1>
+    <ul style="list-style: none">
+        <li><b>Nome:</b> {{ request.user.first_name }}</li>
+        <li><b>Email:</b> {{ request.user.username }}</li>
+        <li><b>CPF:</b> {{ pat.patient_cpf }}</li>
+        <li><b>Data de Nascimento:</b> {{ pat.patient_birthday }}</li>
+    </ul>
+    <a href="{% url 'proc:patientupdate' %}">Editar</a>
+    <a href="{% url 'proc:patient_delete' %}">Deletar</a>
+
+{% endblock %}
