@@ -87,3 +87,13 @@ class RegistrationFormGlobal(forms.Form):
     name = forms.CharField(max_length=100, label='Nome')
     email = forms.EmailField(max_length=100, label='Email')
     password = forms.CharField(widget=forms.PasswordInput(), min_length=6, max_length=20, label='Senha')
+
+    def clean_password(self):
+        if len(self.cleaned_data['password']) < 6:
+            raise ValidationError('Senha menor que 6 digitos')
+        return self.cleaned_data['password']
+
+    def clean_email(self):
+        if len(User.objects.filter(username=self.cleaned_data['email'])) > 0:
+            raise ValidationError('Email ja existe')
+        return self.cleaned_data['email']
