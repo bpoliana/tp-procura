@@ -32,10 +32,12 @@ class RegistrationFormMedicine(forms.Form):
     # model = Medicine
     # fields = ['medicamento_id','medicamento_nome','medicamento_data','medicamento_dosagem','medicamento_fabricante','medicamento_quantidade']
     medicamento_nome = forms.CharField(label='Nome', max_length=45, required=True)
-    medicamento_data = forms.DateField(label='Data', required=True)
+    medicamento_data = forms.DateField(label='Vencimento', required=True)
     medicamento_dosagem = forms.CharField(label='Dosagem', max_length=45, required=True)
     medicamento_fabricante = forms.CharField(label='Fabricante', max_length=45, required=True)
     medicamento_quantidade = forms.DecimalField(label='Quantidade', max_digits=5, decimal_places=0, required=True)
+    medicamento_preco = forms.DecimalField(label = 'Preço',max_digits= 5,decimal_places=2, required=True)
+    medicamento_endereco =  forms.CharField(max_length= 45)
 
 
 class RegistrationFormPatient(forms.Form):
@@ -58,6 +60,24 @@ class RegistrationFormPatient(forms.Form):
         if birthday > date.today():
             raise ValidationError('Nao chegamos a essa data ainda')
         return self.cleaned_data['patient_birthday']
+
+
+class RegistrationFormFornecedor(forms.Form):
+    patient_cnpj = forms.CharField(label='CNPJ', max_length=30, required=True)
+    
+    def clean_fornecedor_cnpj(self):  # Valida CNPJ ja existe
+        cnpj= self.cleaned_data['fornecedor_cnpj']
+        exist_cnpj = Fornecedor.objects.filter(fornecedor_cnpj=cnpj)
+
+        if len( exist_cnpj) > 0:
+            raise ValidationError('CNPJ ja existe')
+        return self.cleaned_data['fornecedor_cnpj']
+
+class UpdateFormFornecedor(forms.Form):
+    nome = forms.CharField(label='Nome', max_length=15)
+    email = forms.EmailField(label='Email')
+    fornecedor_cnpj = forms.CharField(label='CNPJ', max_length=30, required=True)
+
 
 class UpdateFormPatient(forms.Form):
     this_year = date.today().year

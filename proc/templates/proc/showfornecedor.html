@@ -1,0 +1,13 @@
+{% extends "proc/base.html" %}
+
+{% block content %}
+    <h1>Suas informaçoes</h1>
+    <ul style="list-style: none">
+        <li><b>Nome:</b> {{ request.user.first_name }}</li>
+        <li><b>Email:</b> {{ request.user.username }}</li>
+        <li><b>CNPJ:</b> {{forn.fornecedor_cnpj }}</li>
+    </ul>
+    <a href="{% url 'proc:fornecedorupdate' %}">Editar</a>
+    <a href="{% url 'proc:fornecedor_delete' %}">Deletar</a>
+
+{% endblock %}

@@ -21,9 +21,12 @@
 
 <script type='text/javascript'>
  function excluirMedicamento(idParametro) {
-            url = 'http://127.0.0.1:8000/proc/medicine_delete/'+ idParametro
+	var result = confirm("Tem certeza que quer deletar?");
+    if (result) {
+             url = 'http://127.0.0.1:8000/proc/medicine_delete/'+ idParametro;
             window.open(url, '_blank');
-        }
+       }
+}
 
  function atualizarMedicamento(idParametro) {
             url = 'http://127.0.0.1:8000/proc/medicineupdate/'+ idParametro
@@ -51,6 +54,7 @@
 	        <th>Dosagem</th>
 	        <th>Fabricante</th>
 	        <th>Quantidade</th>
+	        <th>Preço</th>
 	        <th></th>
 	        <th></th>
 	    </tr>

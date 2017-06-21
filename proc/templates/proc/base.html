@@ -17,7 +17,7 @@
             <ul>
                 <li class="pure-menu-selected"><a href="/proc/home">Início</a></li>
                 <li><a href="#">Centros de Saúde</a></li>
-                <li><a href="#">Medicamentos</a></li>
+                <li><a href="/proc/medicine">Medicamentos</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'proc:showperfil'%}">Perfil</a></li>
                     <li><a href="{% url 'proc:logout'%}">Logout</a></li>

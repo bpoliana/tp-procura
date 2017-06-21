@@ -46,14 +46,18 @@ class Patient(models.Model):
     patient_birthday = models.DateField()
     user = models.ForeignKey(n_User, on_delete=models.CASCADE)
 
+class Fornecedor(models.Model):
+    fornecedor_cnpj=models.CharField(max_length=14)
 
 class Medicine(models.Model):
-    medicamento_id = models.AutoField(primary_key=True)
+    medicamento_id = models.AutoField(primary_key = True) 
     medicamento_data = models.DateField()
-    medicamento_nome = models.CharField(max_length=45)
-    medicamento_dosagem = models.CharField(max_length=45)
-    medicamento_fabricante = models.CharField(max_length=45)
-    medicamento_quantidade = models.DecimalField(max_digits=5, decimal_places=0)
+    medicamento_nome = models.CharField(max_length= 45)
+    medicamento_dosagem = models.CharField(max_length= 45)
+    medicamento_fabricante = models.CharField(max_length= 45)
+    medicamento_quantidade = models.DecimalField(max_digits =5,decimal_places=0)
+    medicamento_preco = models.DecimalField(max_digits= 2, decimal_places=2 )
+    medicamento_endereco = models.CharField(max_length= 45)
 
 # def __str__(self):
 # return self.medicamento_nome

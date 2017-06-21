@@ -90,6 +90,13 @@ def login_user(request):
 def medicine_manager(request):
     return render_to_response('proc/main_medicine.html', {})
 
+def medicine_search(request):
+    return render_to_response('proc/medicine_search.html', {})
+
+def medicine_results(request,nome):
+    queryset = Medicine.objects.filter(medicamento_nome_icontains = nome)
+    return render_to_response('proc/medicine_results.html', {})
+
 
 def medicine_register(request):
     print(request.method)
@@ -102,6 +109,8 @@ def medicine_register(request):
             med.medicamento_dosagem = form.cleaned_data['medicamento_dosagem']
             med.medicamento_fabricante = form.cleaned_data['medicamento_fabricante']
             med.medicamento_quantidade = form.cleaned_data['medicamento_quantidade']
+            med.medicamento_preco = form.cleaned_data['medicamento_preco']
+            med.medicamento_endereco = form.cleaned_data['medicamento_endereco']
 
             med.save()
             # return render(request,'proc/success.html',{'form':form})
@@ -138,18 +147,20 @@ def medicine_update(request, id):
             med.medicamento_dosagem = form.cleaned_data['medicamento_dosagem']
             med.medicamento_fabricante = form.cleaned_data['medicamento_fabricante']
             med.medicamento_quantidade = form.cleaned_data['medicamento_quantidade']
+            med.medicamento_preco = form.cleaned_data['medicamento_preco']
+            med.medicamento_endereco = form.cleaned_data['medicamento_endereco']
             med.save()
             return HttpResponseRedirect('/proc/medicine_registered')
 
     else:
-        form = RegistrationFormMedicine()
-        # form.medicamento_nome = med.medicamento_nome
-        # form.medicamento_data = med.medicamento_data
-        # form.medicamento_dosagem= med.medicamento_dosagem
-        # form.medicamento_fabricante = med.medicamento_fabricante
-        # form.medicamento_quantidade = med.medicamento_quantidade
+        form = RegistrationFormMedicine(initial={'medicamento_nome':med.medicamento_nome,
+                                                 'medicamento_data':med.medicamento_data,
+                                                 'medicamento_dosagem':med.medicamento_dosagem,
+                                                 'medicamento_fabricante':med.medicamento_fabricante,
+                                                 'medicamento_quantidade':med.medicamento_quantidade,
+                                                 'medicamento_preco':med.medicamento_preco,
+                                                 'medicamento_endereco':med.medicamento_endereco})
     return render(request, 'proc/medicineupdate.html', {'form': form, 'id': id, 'med': med})
-
 
 def patient_register(request, id):
     form = RegistrationFormPatient()
@@ -165,11 +176,27 @@ def patient_register(request, id):
 
     return render(request, 'proc/patientregister.html', {'form': form, 'id': id})
 
+def fornecedor_register(request, id):
+    form = RegistrationFormFornecedor()
+    if request.method == 'POST':
+        form = RegistrationFormPatient(request.POST)
+        if form.is_valid():
+            user = n_User.objects.get(pk=id)
+            cpnj = form.cleaned_data['fornecedor_cnpj']
+            Fornecedor.objects.create(user=user, fornecedor_cnpj=cnpj)
+            messages.info(request, 'Fornecedor criado com sucesso')
+            return redirect('login')
+
+    return render(request, 'proc/patientregister.html', {'form': form, 'id': id})
+
+
 def show_perfil(request):
     tipo = n_User.objects.get(dj_user=request.user).utype
 
     if tipo == 'Pac': # adicionar os links de cada perfil
         return redirect('proc:patient_registered')
+    if tipo == 'For': # adicionar os links de cada perfil
+        return redirect('proc:fornecedor_registered')
     else:
         return redirect('proc:home')
 
@@ -178,6 +205,12 @@ def patient_show(request):
     user = n_User.objects.get(dj_user=dj_user)
     pat = Patient.objects.get(user=user)
     return render(request, "proc/showpatient.html", {'pat': pat})
+
+def fornecedor_show(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    pat = Fornecedor.objects.get(user=user)
+    return render(request, "proc/showfornecedor.html", {'forn': forn})
 
 
 def patient_delete(request):
@@ -193,6 +226,20 @@ def patient_delete(request):
 
 
     return render(request,'proc/patientdelete.html', {})
+
+def fornecedor_delete(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    forn = Fornecedor.objects.get(user=user)
+    if request.method == 'POST':
+        messages.info(request, 'Fornecedor deletado com sucesso')
+        forn.delete()
+        user.delete()
+        dj_user.delete()
+        return redirect('proc:home')
+
+
+    return render(request,'proc/fornecedor_registered.html', {})
 
 
 @login_required(login_url='/accounts/login')
@@ -239,3 +286,45 @@ def patient_update(request):
 
 
     return render(request, 'proc/patientupdate.html', {'form': form, 'id': pat.pk, 'pat': pat})
+
+@login_required(login_url='/accounts/login')
+def fornecedor_update(request):
+    dj_user = request.user
+    user = n_User.objects.get(dj_user=dj_user)
+    forn = Fornecedor.objects.get(user=user)
+    form = UpdateFormFornecedor()
+    nome_field = form.fields['nome']
+    email_field = form.fields['email']
+    cnpj_field = form.fields['fornecedor_cnpj']
+
+    # Set inital values
+    nome_field.initial = dj_user.first_name
+    email_field.initial = dj_user.username
+    cnpj_field.initial = forn.fornecedor_cnpj
+
+    if request.method == 'POST':
+        form = UpdateFormPatient(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            cppj = form.cleaned_data['fornecedor_cnpj']
+            birth = form.cleaned_data['patient_birthday']
+            flag_error = False
+            if email != dj_user.username and len(User.objects.filter(username=email)) > 0:
+                flag_error = True
+                form.add_error('email', 'Email ja existe')
+            if cpf != pat.patient_cpf and len(Patient.objects.filter(patient_cpf=cpf)) > 0:
+                flag_error = True
+                form.add_error('fornecedor_cnpj', 'CNPJ ja existe')
+
+            if not flag_error:
+                forn.patient_cnpj = cnpj
+                forn.save()
+                dj_user.first_name = nome
+                dj_user.username = email
+                dj_user.save()
+                messages.info(request, 'Fornecedor editado com sucesso')
+                return redirect('patient_registered')
+
+
+    return render(request, 'proc/fornecedorupdate.html', {'form': form, 'id': forn.pk, 'forn': forn})

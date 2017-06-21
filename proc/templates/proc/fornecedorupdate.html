@@ -1,9 +1,8 @@
-{% extends "proc/basemedicine.html" %}
+{% extends "proc/base.html" %}
 
 {% block content %}
-    <form method="POST" action="http://127.0.0.1:8000/proc/medicineregister/">
-         {% csrf_token %}
-    	<h1>Cadastre o medicamento</h1>
+    <form method="POST" action="/proc/patientupdate/">{% csrf_token %}
+    	<h1>Modifique os dados de cadastro do fornecedor</h1>
         <div>
 	        <table border="0">
 	        	<tbody>
@@ -18,9 +17,9 @@
 	        	</tbody>
 	        </table>
 	    </div>
-        <button type="submit" class="btn btn-primary pull-center">Cadastrar </button>
+        <button type="submit" class="btn btn-primary pull-center">Modificar </button>
     </form>
     <div>
-    	<th><a href="http://127.0.0.1:8000/proc/medicine/">Voltar</a></th>
+    	<th><a href="http://127.0.0.1:8000/proc/fornecedor_registered/">Voltar</a></th>
     </div>
 {% endblock %}

@@ -1,0 +1,43 @@
+<html>
+	<head>		
+		<style>
+			table {
+			    font-family: arial, sans-serif;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+
+			td, th {
+			    border: 1px solid #dddddd;
+			    text-align: left;
+			    padding: 8px;
+			}
+
+			tr:nth-child(even) {
+			    background-color: #dddddd;
+			}
+		</style>
+
+		<script type='text/javascript'>
+
+
+		 function procuraMedicamento(nomeMedicamento) {
+		 	if(nomeMedicamento){
+
+		 		url = 'http://127.0.0.1:8000/proc/medicine_results/'+ nomeMedicamento
+	            window.open(url, '_blank');
+            }else{
+            	alert("Insira algo a ser pesquisado");
+            }
+        }
+
+		</script>
+
+	</head>
+<div class = "container">
+	<div class = "row">
+		<div class = "col"><input type="text" id="nomeprocura" required="required" pattern ="[A-Za-z0-9]{1,20}"></div>
+		<div class = "col"><button onclick="procuraMedicamento(document.getElementById('nomeprocura').value)">Procurar</button></div>
+	</div>
+</div>
+</html>
