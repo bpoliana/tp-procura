@@ -5,15 +5,6 @@ from django.db import models
 from django.utils import timezone
 
 
-class HealthCenter(models.Model):
-    name = models.CharField(max_length=60)
-    center_type = models.CharField(max_length=15)
-    cnpj = models.CharField(max_length=15)
-
-    def __str__(self):
-        return self.nome
-
-
 class n_UserManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(
@@ -57,3 +48,9 @@ class Medicine(models.Model):
 
 # def __str__(self):
 # return self.medicamento_nome
+
+class HealthCenterOk(models.Model):
+    nome = models.CharField(max_length=60)
+    tipo = models.CharField(max_length=30)
+    endereco = models.CharField(max_length=200)
+    user = models.ForeignKey(n_User, on_delete=models.CASCADE)
