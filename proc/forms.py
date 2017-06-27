@@ -9,7 +9,7 @@ from django.forms import ModelForm
 from proc.models import Patient
 from .models import n_User
 from .models import Medicine
-
+from .models import HealthCenterOk
 
 class RegistrationForm(forms.Form):
     # cpf_regex = '^[0-9{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$'
@@ -97,3 +97,33 @@ class RegistrationFormGlobal(forms.Form):
         if len(User.objects.filter(username=self.cleaned_data['email'])) > 0:
             raise ValidationError('Email ja existe')
         return self.cleaned_data['email']
+
+class RegistrationFormHealthCenter(forms.Form):
+    centro_nome = forms.CharField(label='Nome', max_length=60, required=True)
+    centro_tipo = forms.CharField(label='Tipo', max_length=30)
+    centro_endereco = forms.CharField(label='Endereço', max_length=200)
+
+    def clean_centro_nome(self):  # Valida se o nome ja existe
+        nome = self.cleaned_data['centro_nome']
+        exist_nome = HealthCenterOk.objects.filter(centro_nome=nome)
+
+        if len(exist_nome) > 0:
+            raise ValidationError('Esse nome de Centro de Saude ja esta registrado')
+        return self.cleaned_data['centro_nome']
+
+
+class UpdateFormHealthCenter(forms.Form):
+
+    nome = forms.CharField(label='Nome', max_length=15)
+    email = forms.EmailField(label='Email')
+    centro_nome = forms.CharField(label='Nome:', max_length=60, required=True)
+    centro_tipo = forms.CharField(label='Tipo:', max_length=30, required=True)
+    centro_endereco = forms.CharField(label='Endereço', max_length=200)
+    
+    def clean_centro_nome(self):  # Valida se o nome ja existe
+        nome = self.cleaned_data['centro_nome']
+        exist_nome = HealthCenterOk.objects.filter(centro_nome=nome)
+
+        if len(exist_nome) > 0:
+            raise ValidationError('Esse nome de Centro de Saude ja esta registrado')
+        return self.cleaned_data['centro_nome']

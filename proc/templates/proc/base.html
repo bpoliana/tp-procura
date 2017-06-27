@@ -16,7 +16,7 @@
             <a class="pure-menu-heading" href="">PRO-Cura</a>
             <ul>
                 <li class="pure-menu-selected"><a href="/proc/home">Início</a></li>
-                <li><a href="#">Centros de Saúde</a></li>
+                <li><a href="{% url 'proc:healthcenter_registered'%}">Centros de Saúde</a></li>
                 <li><a href="#">Medicamentos</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'proc:showperfil'%}">Perfil</a></li>
