@@ -253,7 +253,7 @@ def healthcenter_register(request, id):
             nome = form.cleaned_data['centro_nome']
             tipo = form.cleaned_data['centro_tipo']
             endereco = form.cleaned_data['centro_endereco']
-            HealthCenterOk.objects.create(user=user, healthcenter_nome=nome, healthcenter_tipo=tipo)
+            HealthCenterOk.objects.create(user=user, centro_nome=nome, centro_tipo=tipo)
             messages.info(request, 'Centro de Saude criado com sucesso')
             return redirect('login')
 
@@ -263,9 +263,9 @@ def healthcenter_register(request, id):
 def healthcenter_show(request):
     dj_user = request.user
     user = n_User.objects.get(dj_user=dj_user)
-    #cen = HealthCenterOk.objects.get(user=user)
-    queryset = HealthCenterOk.objects.all()
-    return render(request, "proc/healthcenter_show.html", {'queryset': queryset})
+    cen = HealthCenterOk.objects.get(user=user)
+    #queryset = HealthCenterOk.objects.all()
+    return render(request, "proc/healthcenter_show.html", {'cen': cen})
 
 
 def healthcenter_delete(request):
@@ -292,20 +292,14 @@ def healthcenter_update(request):
 
     if request.method == 'POST':
         form = UpdateFormHealthCenter(request.POST)
-        if form.is_valid():  # request.POST.get('medicamento_nome')
-            # pdb.set_trace()
+        if form.is_valid():  
             cen.centro_nome = form.cleaned_data['centro_nome']
             cen.centro_tipo = form.cleaned_data['centro_tipo']
             cen.centro_endereco = form.cleaned_data['centro_endereco']
-            cen.medicamento_fabricante = form.cleaned_data['medicamento_fabricante']
             cen.save()
             return HttpResponseRedirect('/proc/healthcenter_registered')
 
     else:
         form = RegistrationFormHealthCenter()
-        # form.medicamento_nome = med.medicamento_nome
-        # form.medicamento_data = med.medicamento_data
-        # form.medicamento_dosagem= med.medicamento_dosagem
-        # form.medicamento_fabricante = med.medicamento_fabricante
-        # form.medicamento_quantidade = med.medicamento_quantidade
-    return render(request, 'proc/medicineupdate.html', {'form': form, 'id': id, 'cen': cen})
+
+    return render(request, 'proc/healthcenter_update.html', {'form': form, 'id': id, 'cen': cen})
