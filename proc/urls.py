@@ -23,6 +23,10 @@ urlpatterns = [
     url(r'^patient_delete/$', views.patient_delete, name="patient_delete"),
     url(r'^patientupdate/$', views.patient_update, name="patientupdate"),
     url(r'^profile/$', views.show_perfil, name="showperfil"),
-
+    url(r'^healthcenter_register/(?P<id>\d+)/$', views.healthcenter_register, name="healthcenter_register"),
+    url(r'^healthcenter_registered/$', views.healthcenter_show, name="healthcenter_registered"),
+    url(r'^healthcenter_delete/$', views.healthcenter_delete, name="healthcenter_delete"),
+    url(r'^healthcenter_update/$', views.healthcenter_update, name="healthcenter_update"),
+    url(r'^profile/$', views.show_perfil, name="showperfil"),
     # url(r'^registerpat/$',views.registerpat, name= "registerpat")
 ]
