@@ -263,7 +263,7 @@ def healthcenter_register(request, id):
 def healthcenter_show(request):
     dj_user = request.user
     user = n_User.objects.get(dj_user=dj_user)
-    cen = HealthCenterOk.objects.get(user=user)
+    cen = HealthCenterOk.objects.get_or_create(user=user)
     #queryset = HealthCenterOk.objects.all()
     return render(request, "proc/healthcenter_show.html", { 'cen': cen})
 
