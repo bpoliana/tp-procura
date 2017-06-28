@@ -86,9 +86,13 @@ def home(request):
 def login_user(request):
     return render(request, 'registration/login.html', {})
 
-
+@login_required(login_url='/accounts/login')
 def medicine_manager(request):
-    return render_to_response('proc/main_medicine.html', {})
+    tipo = n_User.objects.get(dj_user=request.user).utype
+    if tipo == 'For':
+      return render_to_response('proc/main_medicine2.html')
+    else:
+      return render_to_response('proc/main_medicine.html')
 
 def medicine_search(request):
     return render_to_response('proc/medicine_search.html', {})
@@ -182,7 +186,7 @@ def fornecedor_register(request, id):
         form = RegistrationFormFornecedor(request.POST)
         if form.is_valid():
             user = n_User.objects.get(pk=id)
-            cpnj = form.cleaned_data['fornecedor_cnpj']
+            cnpj = form.cleaned_data['fornecedor_cnpj']
             Fornecedor.objects.create(user=user, fornecedor_cnpj=cnpj)
             messages.info(request, 'Fornecedor criado com sucesso')
             return redirect('login')
@@ -307,7 +311,7 @@ def fornecedor_update(request):
         if form.is_valid():
             nome = form.cleaned_data['nome']
             email = form.cleaned_data['email']
-            cppj = form.cleaned_data['fornecedor_cnpj']
+            cnpj = form.cleaned_data['fornecedor_cnpj']
             birth = form.cleaned_data['patient_birthday']
             flag_error = False
             if email != dj_user.username and len(User.objects.filter(username=email)) > 0:

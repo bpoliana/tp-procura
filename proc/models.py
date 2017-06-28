@@ -48,6 +48,7 @@ class Patient(models.Model):
 
 class Fornecedor(models.Model):
     fornecedor_cnpj=models.CharField(max_length=14)
+    user = models.ForeignKey(n_User, on_delete=models.CASCADE)
 
 class Medicine(models.Model):
     medicamento_id = models.AutoField(primary_key = True) 

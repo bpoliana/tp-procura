@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 
 from proc.models import Patient
+from proc.models import Fornecedor
 from .models import n_User
 from .models import Medicine
 
@@ -63,7 +64,7 @@ class RegistrationFormPatient(forms.Form):
 
 
 class RegistrationFormFornecedor(forms.Form):
-    patient_cnpj = forms.CharField(label='CNPJ', max_length=30, required=True)
+    fornecedor_cnpj = forms.CharField(label='CNPJ', max_length=30, required=True)
     
     def clean_fornecedor_cnpj(self):  # Valida CNPJ ja existe
         cnpj= self.cleaned_data['fornecedor_cnpj']
