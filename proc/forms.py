@@ -36,7 +36,6 @@ class RegistrationFormMedicine(forms.Form):
     medicamento_dosagem = forms.CharField(label='Dosagem', max_length=45, required=True)
     medicamento_fabricante = forms.CharField(label='Fabricante', max_length=45, required=True)
     medicamento_quantidade = forms.DecimalField(label='Quantidade', max_digits=5, decimal_places=0, required=True)
-    #medicamento_preco = forms.DecimalField(label = 'Preço',max_digits= 5,decimal_places=2, required=True)
     medicamento_preco=forms.CharField(label = 'Preço',max_length=6)
     medicamento_endereco =  forms.CharField(max_length= 45)
 

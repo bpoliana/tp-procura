@@ -94,8 +94,8 @@ def medicine_search(request):
     return render_to_response('proc/medicine_search.html', {})
 
 def medicine_results(request,nome):
-    queryset = Medicine.objects.filter(medicamento_nome_icontains = nome)
-    return render_to_response('proc/medicine_results.html', {})
+    queryset = Medicine.objects.filter(medicamento_nome__icontains = nome)
+    return render_to_response('proc/medicine_results.html', {'queryset':queryset})
 
 
 def medicine_register(request):

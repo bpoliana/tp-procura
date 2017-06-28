@@ -56,7 +56,7 @@ class Medicine(models.Model):
     medicamento_dosagem = models.CharField(max_length= 45)
     medicamento_fabricante = models.CharField(max_length= 45)
     medicamento_quantidade = models.DecimalField(max_digits =5,decimal_places=0)
-    medicamento_preco = models.DecimalField(max_digits= 2, decimal_places=2 )
+    medicamento_preco = models.CharField(max_length= 6)
     medicamento_endereco = models.CharField(max_length= 45)
 
 # def __str__(self):

@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^medicine_delete/(?P<id>\d+)/$', views.medicine_delete, name="medicine_delete"),
     url(r'^medicineupdate/(?P<id>\d+)/$', views.medicine_update, name="medicineupdate"),
     url(r'^medicine_search/$',views.medicine_search,name="medicinesearch"),
-    url(r'^medicine_results/(?P<nome>[\w\-]]+)/$',views.medicine_results,name="medicineresults"),
+    url(r'^medicine_results/(?P<nome>[\w\-]+)/$',views.medicine_results,name="medicineresults"),
     
     url(r'^patientregister/(?P<id>\d+)/$', views.patient_register, name="patientregister"),
     url(r'^patient_registered/$', views.patient_show, name="patient_registered"),
