@@ -25,7 +25,7 @@
 			}
 
 			function mostraEndereco(endereco){
-			   alert(endereco);
+			   alert('Endereço:' + endereco);
 			}
 
 		</script>
@@ -49,7 +49,7 @@
 	        <th>Fabricante</th>
 	        <th>Quantidade</th>
 	        <th>Preço</th>
-	        <th></th>
+	        <th>Endereço</th>
 	    </tr>
 		{% for medicine in queryset %}
 		<tr>
@@ -62,8 +62,7 @@
 			    <td>{{ medicine.medicamento_quantidade}}</td>
 			    <td>{{ medicine.medicamento_preco}}</td> 
 			    <td>
-			    	<button onclick="mostraEndereco({{ medicine.medicamento_endereco}})">endereço
-			    	</button>
+			    {{ medicine.medicamento_endereco}}
 			    </td>
 		    </div>  
 
