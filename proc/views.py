@@ -257,7 +257,7 @@ def healthcenter_register(request, id):
             messages.info(request, 'Centro de Saude criado com sucesso')
             return redirect('login')
 
-    return render(request, 'proc/patientregister.html', {'form': form, 'id': id})
+    return render(request, 'proc/healthcenter_register.html', {'form': form, 'id': id})
 
 
 def healthcenter_show(request):
@@ -265,7 +265,7 @@ def healthcenter_show(request):
     user = n_User.objects.get(dj_user=dj_user)
     cen = HealthCenterOk.objects.get(user=user)
     #queryset = HealthCenterOk.objects.all()
-    return render(request, "proc/healthcenter_show.html", {'cen': cen})
+    return render(request, "proc/healthcenter_show.html", { 'cen': cen})
 
 
 def healthcenter_delete(request):
